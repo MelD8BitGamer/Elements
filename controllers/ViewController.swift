@@ -13,13 +13,23 @@ class ViewController: UIViewController {
     @IBOutlet weak var elementTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var allElements = [Element]()
-    var userQuery = ""
+    var allElements = [Element]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.elementTableView.reloadData()
+                //YOU MUST RELOAD DATA!!!
+            }
+        }
+    }
+    
+    //var userQuery = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         elementTableView.dataSource = self
-        searchBar.delegate = self
+        //searchBar.delegate = self
+        elementTableView.delegate = self
+        setUp()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -29,6 +39,19 @@ class ViewController: UIViewController {
         detailedViewController.elementRef = eachCell
         
         }
+    func setUp() {
+        APIClient.getElements(for: "https://5c1d79abbc26950013fbcaa9.mockapi.io/api/v1/elements") { [weak self] (result) in
+            switch result {
+            case .failure(let appError):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Error", message: "\(appError)")
+                }
+            case .success(let data):
+                self?.allElements = data
+                
+            }
+        }
+    }
     
 }
 
@@ -39,17 +62,21 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "elementCell", for: indexPath) as? ElementsTableViewCell else { fatalError("Could not find Cell")}
-        
-        //TODO: Put details in
+        cell.setUpCell(eachCell: allElements[indexPath.row])
+        //TODO: Put image in
         return cell
     }
 }
 
-
-extension ViewController: UISearchBarDelegate {
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        userQuery = searchText
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
     }
-    
 }
+//extension ViewController: UISearchBarDelegate {
+//
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        userQuery = searchText
+//    }
+//
+//}
