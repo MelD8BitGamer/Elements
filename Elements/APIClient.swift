@@ -40,7 +40,7 @@ struct APIClient: Codable {
    }
  
  static func postFavorite(postElement: Element, completion: @escaping (Result<Bool,AppError>) -> ()) {
-     let postEndpointUrl = "https://5c2e2a592fffe80014bd6904.mockapi.io/api/v1/favorites"
+     let postEndpointUrl = "http://5c1d79abbc26950013fbcaa9.mockapi.io/api/v1/favorites"
 
     guard let urlString = URL(string: postEndpointUrl) else {
         completion(.failure(.badURL(postEndpointUrl)))

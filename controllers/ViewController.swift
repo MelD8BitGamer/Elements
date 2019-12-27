@@ -30,29 +30,41 @@ class ViewController: UIViewController {
         //searchBar.delegate = self
         elementTableView.delegate = self
         setUp()
+        
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let indexPath = elementTableView.indexPathForSelectedRow,
             let detailedViewController = segue.destination as? DetailViewController else { fatalError("could not prepareForSegue")}
-                let eachCell = allElements[indexPath.row]
+        let eachCell = allElements[indexPath.row]
         detailedViewController.elementRef = eachCell
         
-        }
+    }
     func setUp() {
         APIClient.getElements(for: "https://5c1d79abbc26950013fbcaa9.mockapi.io/api/v1/elements") { [weak self] (result) in
             switch result {
             case .failure(let appError):
                 DispatchQueue.main.async {
-                    self?.showAlert(title: "Error", message: "\(appError)")
+                    self?.showAlert(title: "Error", message: "Cannot load elements \(appError)")
                 }
             case .success(let data):
                 self?.allElements = data
-                
+            }
+        }
+        addMore()
+    }
+    func addMore() {
+        APIClient.getElements(for: "https://5c1d79abbc26950013fbcaa9.mockapi.io/api/v1/elements_remaining") { [weak self] (result) in
+            switch result {
+            case .failure(let appError):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Error", message: "Cannot find element \(appError)")
+                }
+            case .success(let data):
+                self?.allElements += data
             }
         }
     }
-    
 }
 
 extension ViewController: UITableViewDataSource {
@@ -63,7 +75,6 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "elementCell", for: indexPath) as? ElementsTableViewCell else { fatalError("Could not find Cell")}
         cell.setUpCell(eachCell: allElements[indexPath.row])
-        //TODO: Put image in
         return cell
     }
 }

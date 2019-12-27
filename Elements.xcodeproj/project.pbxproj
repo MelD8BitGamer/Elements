@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4D35CD8123B162AC00CFAEDD /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35CD8023B162AC00CFAEDD /* UIImageView+Extension.swift */; };
+		4D40CF5A23B56EFF00E8E8DA /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40CF5923B56EFF00E8E8DA /* FavoritesViewController.swift */; };
 		4DC10E8F23AC1AA30013ED32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC10E8E23AC1AA30013ED32 /* AppDelegate.swift */; };
 		4DC10E9123AC1AA30013ED32 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC10E9023AC1AA30013ED32 /* SceneDelegate.swift */; };
 		4DC10E9323AC1AA30013ED32 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC10E9223AC1AA30013ED32 /* ViewController.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		4D35CD8023B162AC00CFAEDD /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		4D40CF5923B56EFF00E8E8DA /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoritesViewController.swift; path = controllers/FavoritesViewController.swift; sourceTree = SOURCE_ROOT; };
 		4DC10E8B23AC1AA30013ED32 /* Elements.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elements.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DC10E8E23AC1AA30013ED32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DC10E9023AC1AA30013ED32 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			children = (
 				4DC10E9223AC1AA30013ED32 /* ViewController.swift */,
 				4DC10EA623AC1DD80013ED32 /* DetailViewController.swift */,
+				4D40CF5923B56EFF00E8E8DA /* FavoritesViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				4D35CD8123B162AC00CFAEDD /* UIImageView+Extension.swift in Sources */,
 				4DC10EA723AC1DD80013ED32 /* DetailViewController.swift in Sources */,
 				4DC10EA323AC1D690013ED32 /* ElementsTableViewCell.swift in Sources */,
+				4D40CF5A23B56EFF00E8E8DA /* FavoritesViewController.swift in Sources */,
 				4DC10E9123AC1AA30013ED32 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
