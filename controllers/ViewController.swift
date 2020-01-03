@@ -22,12 +22,12 @@ class ViewController: UIViewController {
         }
     }
     
-    //var userQuery = ""
+    var userQuery = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         elementTableView.dataSource = self
-        //searchBar.delegate = self
+        searchBar.delegate = self
         elementTableView.delegate = self
         setUp()
         
@@ -84,10 +84,10 @@ extension ViewController: UITableViewDelegate {
         return 70
     }
 }
-//extension ViewController: UISearchBarDelegate {
-//
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        userQuery = searchText
-//    }
-//
-//}
+extension ViewController: UISearchBarDelegate {
+//TODO: fix searchbar
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        userQuery = searchText
+    }
+
+}

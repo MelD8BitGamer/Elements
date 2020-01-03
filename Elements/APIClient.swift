@@ -13,7 +13,6 @@ struct APIClient: Codable {
     static func getElements(for urlString: String,
                            completion: @escaping (Result<[Element], AppError>) -> ()) { //it takes in a valid url and a completion handler
 // the completion handler captures the value of the decoded data from API(like the phone call)
-         
         guard let url = URL(string: urlString) else { completion(.failure(.badURL(urlString)))
             return
            
