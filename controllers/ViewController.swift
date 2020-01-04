@@ -22,7 +22,20 @@ class ViewController: UIViewController {
         }
     }
     
-    var userQuery = ""
+    var userQuery = "" {
+        didSet{
+            APIClient.getElements(for: "https://5c1d79abbc26950013fbcaa9.mockapi.io/api/v1/elements") { [weak self] (result) in
+                switch result {
+                case .failure(let appError):
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Data Failure", message: "Unable to retrieve Elements \(appError)")
+                    }
+                case .success(let data):
+                    self?.allElements = data.filter{$0.name.lowercased().contains(self!.userQuery.lowercased()) }
+                }
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,9 +98,13 @@ extension ViewController: UITableViewDelegate {
     }
 }
 extension ViewController: UISearchBarDelegate {
-//TODO: fix searchbar
+    //TODO: fix searchbar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            setUp()
+            return
+        }
         userQuery = searchText
     }
-
+    
 }

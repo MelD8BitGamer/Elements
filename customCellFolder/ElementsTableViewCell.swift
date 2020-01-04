@@ -9,7 +9,7 @@
 import UIKit
 
 class ElementsTableViewCell: UITableViewCell {
-
+    
     
     @IBOutlet weak var imageLabel: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -45,6 +45,6 @@ class ElementsTableViewCell: UITableViewCell {
         return "http://www.theodoregray.com/periodictable/Tiles/\(conversion)/s7.JPG"
     }
     
-   
+    
 }
 

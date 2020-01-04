@@ -18,16 +18,16 @@ struct Element: Codable {
     let symbol: String
     var favoritedBy: String?
     
-//    Coding keys are used to take the RAW DATA that is not swiftly into Swiftly elements by conforming into coding keys like below the cases are how you want it and the string is how it appears in the data
+//    Coding keys are used to take the RAW DATA that is not swiftly into Swiftly elements by conforming into coding keys like below the cases are how you want it and the string is how it appears in the data. You dont need to reiterate the cases if they are spelled the same way. Only the snake keys.
     enum CodingKeys: String, CodingKey {
-        case name = "name"
+        case name
         case atomicMass = "atomic_mass"
-        case boil = "boil"
+        case boil
         case discoveredBy = "discovered_by"
-        case melt = "melt"
-        case number = "number"
-        case symbol = "symbol"
-        case favoritedBy = "favoritedBy"
+        case melt
+        case number
+        case symbol
+        case favoritedBy
     }
     
 }

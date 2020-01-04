@@ -23,7 +23,7 @@ class NetworkHelper {
         session = URLSession(configuration: .default)
     }
     //a escaping doesn't complete until the result of the closures come back from the network(complete)     
-
+    
     func postDataTask(request:URLRequest, completion: @escaping (Result<Data,AppError>) ->()) {
         let dataTask = session.dataTask(with: request) { (data, response, error) in
             if let error = error {

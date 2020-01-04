@@ -87,7 +87,7 @@ class DetailViewController: UIViewController {
             case .failure(let appError):
                 DispatchQueue.main.async {
                     self?.showAlert(title: "Image Error", message: "No image available \(appError)")
-                    self?.elementImageOutlet.image = UIImage(named: "uhoh")
+                    self?.elementImageOutlet.image = UIImage(named: "homer")
                 }
             case .success(let imageURL):
                 DispatchQueue.main.async {
@@ -101,7 +101,6 @@ class DetailViewController: UIViewController {
     
     
 }
-
 
 
 
